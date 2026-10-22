@@ -1,0 +1,20 @@
+{
+  "name": "kozmik-belgesel",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Gerçek zamanlı 3B Türkçe uzay belgeseli (Three.js + Vite)",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "three": "0.128.0",
+    "topojson-client": "^3.1.0",
+    "world-atlas": "^2.0.2"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  }
+}

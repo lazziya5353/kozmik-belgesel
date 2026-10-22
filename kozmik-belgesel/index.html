@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kozmik Belgesel</title>
+<meta name="description" content="Samanyolu, Güneş Sistemi, Zaman Çubuğu ve Zodyak Keşfi ile gerçek zamanlı 3B Türkçe uzay belgeseli.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+</head>
+<body>
+<canvas id="gl"></canvas>
+<div id="flash"></div><div id="warp"></div>
+<div id="loader"><div><h1>KOZMİK BELGESEL</h1><p id="ltxt">Evren inşa ediliyor…</p><div class="bar"><i id="lbar"></i></div></div></div>
+<header class="top">
+ <div class="brand"><h1>KOZMİK BELGESEL</h1><span>Evrenin gerçek zamanlı yolculuğu</span></div>
+ <nav class="tabs" id="tabs"><button data-m="kesif" class="on">Keşif</button><button data-m="gez">Gezegenler</button><button data-m="whatif">Ya Olsaydı?</button><button data-m="zodyak">Zodyak Keşfi</button><button data-m="asc">Yükselen Burç</button><button data-m="gal">Samanyolu</button></nav>
+ <div class="tools"><button data-f="earth" class="on">Dünya</button><button data-f="sun">Güneş</button><button data-f="moon">Ay</button><button id="live">Canlı Dünya: kapalı</button><button id="voice">Anlatıcı: kapalı</button><button id="pToggle">Paneli gizle</button></div>
+</header>
+<aside id="panel" data-m="kesif">
+ <section data-s="kesif">
+  <h2>Güneş, Dünya ve Ay</h2>
+  <p>Sahnede sürükleyerek etrafa bak, tekerlek ya da iki parmakla yakınlaş. Üstteki düğmelerle Dünya, Güneş veya Ay’a odaklan. Alttaki Zaman Çubuğu’nu kaydırarak evrenin tarihinde yolculuk yap.</p>
+  <dl class="stats">
+   <div><dt>Dünya–Güneş</dt><dd>1 AU · 149,6 milyon km</dd></div>
+   <div><dt>Güneş ışığı yolculuğu</dt><dd>8 dk 19 sn</dd></div>
+   <div><dt>Dünya–Ay</dt><dd>384.400 km</dd></div>
+   <div><dt>Ay ışığı yolculuğu</dt><dd>1,28 sn</dd></div>
+   <div><dt>Dünya’nın yörünge hızı</dt><dd>29,8 km/sn</dd></div>
+   <div><dt>Ekvatorda dönüş hızı</dt><dd>1.674 km/sa</dd></div>
+   <div><dt>Güneş’in yarıçapı</dt><dd>109 Dünya yarıçapı</dd></div>
+  </dl>
+  <p>“Gezegenler” sekmesinden Güneş Sistemi’ndeki her gök cismine yakın çekimle gidebilirsin. “Samanyolu” sekmesinde ise yalnızca galaksiyi izlersin.</p>
+  <h3>Bir gözlemcinin notu</h3>
+  <p>Güneş, Samanyolu’ndaki yaklaşık 200 milyar yıldızdan yalnızca biri. Bu sahnede boyutlar belgesel anlatımı için sıkıştırılmıştır; “Ya Olsaydı?” sekmesindeki gökyüzü penceresi ise gerçek açısal boyutları gösterir.</p>
+  <p class="note">Gezegen mesafeleri sahnede sıkıştırılmıştır (gerçek oranlar korunmaz); yörünge çizgileri “Güneş Sistemi” görünümünde açılır. Tüm dokular tarayıcıda üretilir.</p>
+ </section>
+ <section data-s="gez">
+  <h2>Gezegenler</h2>
+  <p>Bir gök cismi seç; kamera ona yakın çekimle gider. “Güneş Sistemi” yörüngelerin tamamını gösterir.</p>
+  <div class="chips" id="plChips"></div>
+  <button id="tourBtn">▶ Gezegen turunu başlat</button>
+  <div id="plInfo"></div>
+  <p class="note">Mesafeler ve boyutlar sahnede sıkıştırılmıştır; gerçek oranlar korunmaz. Sürükleyerek etrafında dön, tekerlekle yakınlaş.</p>
+ </section>
+ <section data-s="gal">
+  <h2>Samanyolu</h2>
+  <p>Dünya, Güneş ve gezegenler gizlendi; yalnızca galaksimizin içinden gökyüzüne bakıyorsun. Sürükleyerek etrafa bak, tekerlekle yakınlaş. Başlangıçta Yay takımyıldızı yönüne, yani galaksinin merkezine bakıyorsun.</p>
+  <dl class="stats">
+   <div><dt>Yıldız sayısı</dt><dd>~200–400 milyar</dd></div>
+   <div><dt>Çap</dt><dd>~100.000 ışık yılı</dd></div>
+   <div><dt>Güneş’in merkezden uzaklığı</dt><dd>~26.000 ışık yılı</dd></div>
+   <div><dt>Güneş’in galaktik turu</dt><dd>~230 milyon yıl</dd></div>
+   <div><dt>Merkez kara delik</dt><dd>Sgr A*, ~4,3 milyon Güneş</dd></div>
+  </dl>
+  <h3>Neden bir bant görüyoruz?</h3>
+  <p>Samanyolu disk biçimli bir galaksidir ve biz diskin içindeyiz. Diske yandan bakınca yıldızlar gökyüzünde parlak bir şerit olarak birikir. Şeridi bölen koyu yarıklar, arkadaki yıldız ışığını soğuran toz bulutlarıdır; pembe ve mor ışımalar yıldız doğum bölgeleridir.</p>
+  <p>Yaklaşık 4,5 milyar yıl sonra Samanyolu’nun komşusu Andromeda ile birleşmesi bekleniyor.</p>
+  <p class="note">Bu görünüm tarayıcıda üretilmiş bir modeldir; gerçek bir fotoğraf değildir.</p>
+ </section>
+ <section data-s="whatif">
+  <h2>Ya Olsaydı?</h2>
+  <div class="seg" id="wfTarget"><button data-t="sun" class="on">Dünya → Güneş</button><button data-t="moon">Dünya → Ay</button></div>
+  <label class="sl" for="wf">Uzaklık <output id="wfOut"></output></label>
+  <input type="range" id="wf" min="0" max="1000" value="807">
+  <div class="chips" id="wfPre"></div>
+  <canvas id="sky" width="340" height="150"></canvas>
+  <small>Gökyüzü penceresi: gerçek açısal boyutlar, yaklaşık 42° görüş alanı.</small>
+  <dl class="stats" id="wfStats"></dl>
+  <h3 id="chTitle"></h3><p id="chTxt"></p>
+  <p class="note">Değerler basitleştirilmiş fizik modelidir (sabit güneş ışıması, tek katmanlı sera düzeltmesi). Sahne ölçeği ve gelgit kabarması görsel olarak abartılmıştır.</p>
+ </section>
+ <section data-s="zaman">
+  <small id="zmEra"></small>
+  <h2 id="zmTitle"></h2>
+  <p id="zmTxt"></p>
+  <dl class="stats" id="zmStats"></dl>
+  <p class="note">Çubuk doğrusal değildir: her kilometre taşı eşit aralıkla yerleştirilmiştir, böylece 13,8 milyar yıl ile birkaç yüz yıl yan yana okunabilir.</p>
+ </section>
+ <section data-s="asc">
+  <h2>Yükselen Burç</h2>
+  <p>Doğum anında doğu ufkunda yükselen burç, Güneş ve Ay burcundan bağımsız olarak hesaplanır. Doğum tarihini, saatini ve yerini gir; konumu Dünya’nın üzerinde kırmızı bir işaretle gösterelim.</p>
+  <form id="ascForm" class="form" autocomplete="off">
+   <label>Doğum tarihi<input type="date" id="ascDate" required></label>
+   <label>Doğum saati<input type="time" id="ascTime" required value="12:00"></label>
+   <label>Doğum yeri<select id="ascCity"></select></label>
+   <button type="submit" class="go">Hesapla</button>
+  </form>
+  <div id="ascOut" hidden>
+   <canvas id="ascWheel" style="width:100%;max-width:320px;display:block;margin:8px auto"></canvas>
+   <dl class="stats" id="ascStats"></dl>
+   <h3 id="ascName"></h3><p id="ascText"></p>
+   <h3>Güneş burcun</h3><p id="ascSun"></p>
+   <h3>Ay burcun</h3><p id="ascMoon"></p>
+  </div>
+  <p class="note">Hesap, yerel yıldız zamanı ve ekliptiğin eğikliği kullanılarak yapılır (tropikal zodyak, eşit evler). Güneş ve Ay konumları yaklaşık 1° hassasiyettedir; doğum saati belirsizse yükselen burç değişebilir. Astroloji bilimsel bir yöntem değildir; yorumlar kültürel bir anlatıdır.</p>
+ </section>
+ <section data-s="zodyak">
+  <h2>Zodyak Keşfi</h2>
+  <h3>Bugünün Göğü</h3><small id="todayDate"></small>
+  <canvas id="wheel" width="340" height="340" style="width:100%;max-width:300px;display:block;margin:6px auto"></canvas>
+  <dl class="stats" id="todayStats"></dl>
+  <small>Konumlar bugünün gerçek gökyüzünden hesaplanır (tropikal zodyak, yaklaşık 1° hassasiyet). ℞ = gezegen göğde geri hareket ediyor.</small>
+  <p id="zdHint">Gökyüzünde sana doğru bakan bir portalı seç ya da aşağıdan bir burç seç. Kamera derin uzaya geçip takımyıldızını holografik olarak gösterir.</p>
+  <div class="zgrid" id="zGrid"></div>
+  <div id="zdBox" hidden>
+   <h2 id="zdName"></h2>
+   <dl class="stats" id="zdStats"></dl>
+   <h3>Günün yorumu</h3><div id="zdDaily"></div>
+   <h3>Mitoloji</h3><p id="zdMit"></p>
+   <h3>Kültürel anlatı</h3><p id="zdKar"></p>
+   <h3>Gökyüzü gerçeği</h3><p id="zdGok"></p>
+   <div class="chips"><button id="zdDepth">Derinliği aç</button><button id="zdBack">Dünya’ya dön</button></div>
+  </div>
+  <p class="note">Astroloji bilimsel bir yöntem değildir; burç özellikleri kültürel bir anlatı olarak sunulur. Burç tarihleri tropikal zodyağa, takımyıldızlar ise gerçek gökyüzüne aittir; presesyon nedeniyle ikisi bugün birbirinden ayrılmıştır. Hologramdaki derinlik, adı verilen yıldızlar için yaklaşık gerçek uzaklıktan, adsız yıldızlar için şematiktir.</p>
+ </section>
+</aside>
+<div id="dayCard" hidden></div>
+<footer id="tl">
+ <div class="tl-h"><div><small id="tlEra">Bugün</small><b id="tlName">Bugün</b></div>
+  <div class="tl-r"><span id="tlTime">2026</span><button id="tlPlay">▶ Oynat</button><button id="tlNow">Bugüne dön</button></div></div>
+ <input type="range" id="tlRange" min="0" max="30" step="0.001" value="0" aria-label="Zaman Çubuğu">
+ <div id="tlTicks"></div>
+</footer>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
